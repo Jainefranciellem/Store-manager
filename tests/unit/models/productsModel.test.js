@@ -32,21 +32,20 @@ describe('test products model', () => {
 
 
   it('getById with data', async () => {
-    sinon.stub(connection, "execute").resolves([getByIdMockWithData]);
+    sinon.stub(connection, "execute").resolves([[getByIdMockWithData]]);
 
     const result = await productsModel.getById(1);
 
-     expect(result).to.be.an("array");
-     expect(result).to.have.length(1);
+     expect(result).to.be.an("object");
+     expect(result).to.deep.equal(getByIdMockWithData);
   });
 
    it("getById without data", async () => {
-     sinon.stub(connection, "execute").resolves([getByIdMockWithData]);
+     sinon.stub(connection, "execute").resolves([[]]);
 
      const result = await productsModel.getById(50);
 
-     expect(result).to.be.an("array");
-     expect(result).to.have.length(0);
+     expect(result).to.be.undefined;
    });
 
 });

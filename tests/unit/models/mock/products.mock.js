@@ -4,6 +4,6 @@ const getAllMockWithData = [
   { id: 3, name: 'Escudo do Capitão América' }
 ];
 
-const getByIdMockWithData = [{ id: 1, name: "Martelo de Thor" }];
+const getByIdMockWithData = { id: 1, name: "Martelo de Thor" };
 
 module.exports = { getAllMockWithData, getByIdMockWithData };
