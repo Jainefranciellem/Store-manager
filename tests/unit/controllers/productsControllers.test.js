@@ -49,7 +49,7 @@ describe("test products controller", () => {
     await productController.getById(req, res);
 
     expect(res.status).to.have.been.calledWith(200);
-    expect(res.json).to.have.been.calledWith({ message: getByIdMockWithData });
+    expect(res.json).to.have.been.calledWith(getByIdMockWithData);
   });
 
   it("return status 404 and product not found", async function () {

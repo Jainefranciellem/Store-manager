@@ -12,7 +12,7 @@ const getById = async (req, res) => {
   if (type) {
     return res.status(404).json({ message: 'Product not found' });
   }
-  return res.status(200).json({ message });
+  return res.status(200).json(message);
 };
 
 module.exports = {
