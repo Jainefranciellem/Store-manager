@@ -1,6 +1,7 @@
-const { getAll, getById } = require('./products.controllers');
+const { getAll, getById, create } = require('./products.controllers');
 
 module.exports = {
   getAll,
   getById,
+  create,
 };
