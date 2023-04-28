@@ -24,7 +24,7 @@ describe("test products service", () => {
     const result = await productService.getById(1);
 
     expect(result).to.be.an("object");
-    expect(result.message).to.deep.equal(getByIdMockWithData);
+    expect(result.message).to.deep.equal({ id: 1, name: "ProdutoX" });
   });
 
   it("getById without data", async () => {
@@ -34,5 +34,15 @@ describe("test products service", () => {
 
     expect(result.type).to.deep.equal("PRODUCT_NOT_FOUND");
     expect(result.message).to.deep.equal("Product not found");
+  });
+
+  it('create with data ', async () => {
+    sinon.stub(productModel, "create").resolves({ id: 5, name: "ProdutoX" });
+
+    const result = await productService.create({ id: 5, name: "ProdutoX" })
+
+    expect(result).to.be.an('object')
+    expect(result.message.name).to.be.equal("ProdutoX");
+    expect(result.message.id).to.be.equal(5);
   });
 });

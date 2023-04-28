@@ -48,4 +48,13 @@ describe('test products model', () => {
      expect(result).to.be.undefined;
    });
 
+  it("getById without data", async () => {
+    sinon.stub(connection, "execute").resolves([{ id: 5, name: 'productX' }]);
+
+    const result = await productsModel.create({ id: 5, name: "productX" });
+
+    expect(result).to.be.an('object');
+    expect(result).to.be.keys('id', 'name');
+  });
+
 });
