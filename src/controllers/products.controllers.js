@@ -17,7 +17,7 @@ const getById = async (req, res) => {
 const create = async (req, res) => {
   const product = req.body;
   const result = await productService.create(product);
-  return res.status(201).json(result);
+  return res.status(201).json(result.message);
 };
 
 module.exports = {
