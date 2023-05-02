@@ -73,17 +73,17 @@ describe("test products controller", () => {
     expect(res.json).to.have.been.calledWith({ message: "Product not found" });
   });
 
-   it("return status 201 and created product", async () => {
+   it("return status 201 and created product", async function () {
      const res = {};
      const req = {
-       body: { id: 5, name: "ProdutoX" },
+       body: { name: "ProdutoX" },
      };
 
-     res.status = sinon.stub().returns(res);
      res.json = sinon.stub().returns();
      sinon
        .stub(productService, "create")
-       .resolves({ id: 5, name: "ProdutoX" });
+       .resolves({ type: null, message: { id: 5, name: "ProdutoX" } });
+     res.status = sinon.stub().returns(res);
 
      await productController.create(req, res);
 

@@ -7,7 +7,6 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const sale = await salesModel.getById(id);
-  console.log(sale, 'service');
   if (!sale || sale.length === 0) {
     return { type: 404, message: 'Sale not found' };
   }
@@ -15,9 +14,7 @@ const getById = async (id) => {
 };
 
 const createSales = async (salesArray) => {
-  const date = new Date();
-
-  const salesId = await salesModel.createSale(date, salesArray);
+  const salesId = await salesModel.createSales(salesArray);
 
   return { type: null, message: { id: salesId, itemsSold: salesArray } };
 };

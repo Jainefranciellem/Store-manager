@@ -25,10 +25,9 @@ const getById = async (id) => {
   return sale;
 };
 
-const createSale = async (date, arraySales) => {
+const createSales = async (arraySales) => {
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO StoreManager.sales (date) VALUES (?);',
-    [date],
+    'INSERT INTO StoreManager.sales () VALUES ();',
   );
 
   const promise = arraySales.map(async ({ productId, quantity }) => {
@@ -44,7 +43,7 @@ const createSale = async (date, arraySales) => {
 };
 
 module.exports = {
-  createSale,
+  createSales,
   getAll,
   getById,
 };

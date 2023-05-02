@@ -9,10 +9,8 @@ const getById = async (req, res) => {
   const { id } = req.params;
   const { type, message } = await salesService.getById(id);
   if (type) {
-    console.log('type error');
    return res.status(type).json({ message: 'Sale not found' });
   }
-  console.log('type asserts');
    return res.status(200).json(message);
 };
 

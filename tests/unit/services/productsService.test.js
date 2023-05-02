@@ -24,7 +24,7 @@ describe("test products service", () => {
     const result = await productService.getById(1);
 
     expect(result).to.be.an("object");
-    expect(result.message).to.deep.equal({ id: 1, name: "ProdutoX" });
+    expect(result.message).to.deep.equal(getByIdMockWithData);
   });
 
   it("getById without data", async () => {
@@ -32,7 +32,7 @@ describe("test products service", () => {
 
     const result = await productService.getById(50);
 
-    expect(result.type).to.deep.equal("PRODUCT_NOT_FOUND");
+    expect(result.type).to.deep.equal(404);
     expect(result.message).to.deep.equal("Product not found");
   });
 
