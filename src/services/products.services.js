@@ -7,7 +7,6 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const productId = await productModel.getById(id);
-  console.log();
   if (!productId) {
     return { type: 404, message: 'Product not found' };
   }
@@ -28,9 +27,19 @@ const updateProduct = async (id, name) => {
   return { type: null, message: { id, name } };
 };
 
+const deleteProduct = async (id) => {
+  const productId = await productModel.getById(id);
+   if (!productId) {
+     return { type: 404, message: 'Product not found' };
+   }
+  await productModel.deleteProduct(id);
+  return { type: null, message: productId };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   updateProduct,
+  deleteProduct,
 };
