@@ -26,7 +26,7 @@ const updateProduct = async (req, res) => {
 
   const { type, message } = await productService.updateProduct(id, name);
   if (type) {
-    return res.status(404).json({ message });
+    return res.status(type).json({ message });
   }
   return res.status(200).json(message);
 };

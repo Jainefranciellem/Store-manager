@@ -7,5 +7,6 @@ const { validationProduct, validationQuantity } = require('../middlewares/salesV
 router.get('/', salesController.getAll);
 router.get('/:id', salesController.getById);
 router.post('/', validationProduct, validationQuantity, salesController.createSales);
+router.delete('/:id', salesController.deleteSales);
 
 module.exports = router;
