@@ -21,7 +21,6 @@ const createSales = async (salesArray) => {
 
 const deleteSales = async (id) => {
   const saleId = await salesModel.getById(id);
-  console.log('n entrou no if', saleId);
   if (saleId.length === 0) {
     return { type: 404, message: 'Sale not found' };
   }
@@ -29,9 +28,19 @@ const deleteSales = async (id) => {
   return { type: null, message: saleId };
 };
 
+const updateSales = async (saleId, itemsUpdated) => {
+  const { type } = await getById(saleId);
+  await salesModel.updateSales(saleId, itemsUpdated);
+  if (type) {
+    return { type: 404, message: 'Sale not found' };
+  }
+   return { type: null, message: { saleId, itemsUpdated } };
+};
+
 module.exports = {
   getAll,
   getById,
   createSales,
   deleteSales,
+  updateSales,
 };
