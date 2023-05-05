@@ -45,4 +45,19 @@ describe("test products service", () => {
     expect(result.message.name).to.be.equal("ProdutoX");
     expect(result.message.id).to.be.equal(5);
   });
+
+   it("Delete Product", async () => {
+     sinon.stub(productModel, "deleteProduct").resolves();
+     const result = await productService.deleteProduct(1);
+     expect(result).to.be.an("object");
+     expect(result.message).to.have.keys(["id", "name"]);
+   });
+
+   it("Search Product", async () => {
+     const result = await productService.searchProduct("Martelo");
+     expect(result).to.be.an("array");
+     expect(result).to.have.length(1);
+     expect(result[0]).to.have.keys(["id", "name"]);
+     expect(result[0].name).to.be.equal("Martelo de Thor");
+   });
 });

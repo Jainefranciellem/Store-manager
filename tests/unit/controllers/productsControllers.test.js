@@ -90,5 +90,35 @@ describe("test products controller", () => {
      expect(res.status).to.have.been.calledWith(201);
      expect(res.json).to.have.been.calledWith({ id: 5, name: "ProdutoX" });
    });
+
+   it("Delete Product with id", async () => {
+     const req = { params: { id: Infinity } };
+     const res = {};
+
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+
+     await productController.deleteProduct(req, res);
+
+     expect(res.status.calledWith(404)).to.be.equal(true);
+   });
+
+  it("return status 200 and update product", async () => {
+    const product = { name: "Stormbreaker" };
+    sinon.stub(productService, "updateProduct").resolves({
+      id: 1,
+      name: "Stormbreaker",
+    });
+
+    const req = { params: { id: 1 }, body: product };
+    const res = {};
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    await productController.updateProduct(req, res);
+
+    expect(res.status.calledWith(200)).to.be.equal(true);
+  });
 });
 
